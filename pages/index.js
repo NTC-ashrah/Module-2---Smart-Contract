@@ -113,8 +113,8 @@ export default function HomePage() {
           }} />
         </div>
         <div className="flex justify-center gap-5 mt-10 text-white">
-          <button className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500" disabled={amount <= 0} onClick={deposit}>Deposit 1 ETH</button>
-          <button className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500" disabled={amount <= 0} onClick={withdraw}>Withdraw 1 ETH</button>
+          <button className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500" disabled={amount <= 0} onClick={deposit}>Deposit</button>
+          <button className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500" disabled={amount <= 0} onClick={withdraw}>Withdraw</button>
         </div>
       </div>
     );
