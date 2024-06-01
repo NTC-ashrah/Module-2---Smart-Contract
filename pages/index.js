@@ -85,9 +85,12 @@ export default function HomePage() {
     if (!account) {
       return (
         <div className="flex justify-center text-sm font-thin mt-6">
-        <button className="hover:bg-yellow-400 bg-yellow-600 p-4 rounded text-white" onClick={connectAccount}>
-          Please connect your Metamask wallet 
-        </button>
+          <button
+            className="hover:bg-yellow-400 bg-yellow-600 p-4 rounded text-white"
+            onClick={connectAccount}
+          >
+            Please connect your Metamask wallet
+          </button>
         </div>
       );
     }
@@ -97,24 +100,66 @@ export default function HomePage() {
     }
 
     return (
-      <div className="">
-        <div className="text-sm font-thin mt-7 ml-5 ">
-        <hr className="" />
-          <p className="text-white font-bold"> <span className="text-xl">Your Account:</span>  {account}</p>
-          <hr />
-          <p className="text-yellow-300 font-bold flex justify-center text-xl">Your Balance: {balance}</p>
-          <hr className="" />
+      <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto mt-10">
+        <div className="text-sm font-thin">
+          <hr className="mb-4" />
+          <p className="text-gray-800 font-bold text-md mb-4">
+            <span className="text-lg">Your Account:</span> 
+            <span className="block break-words">{account}</span>
+          </p>
+          <hr className="mb-4" />
+          <div className="flex justify-center mb-4">
+            <div className="bg-yellow-200 p-4 rounded-md shadow-inner">
+              <p className="text-yellow-500 font-bold text-2xl">
+                Your Balance: {balance}
+              </p>
+            </div>
+          </div>
+          <hr className="mb-4" />
         </div>
         <div className="flex justify-center mt-5">
-          <input className="p-3" type="text" placeholder="Input Amount" value={amount} onChange={(e)=>{
-            const x = e.target.value 
-            setAmount(x >= 0 ? x : 0)
-
-          }} />
+          <div className="relative w-64">
+            <input
+              className="p-3 border border-gray-300 rounded-md shadow-sm w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="number"
+              placeholder="Input Amount"
+              value={amount}
+              onChange={(e) => {
+                const x = e.target.value;
+                setAmount(x >= 0 ? x : 0);
+              }}
+            />
+            <div className="absolute inset-y-0 right-0 flex flex-col items-center justify-center hidden group-hover:flex">
+              <button
+                className="px-2 text-gray-600 hover:text-gray-800"
+                onClick={() => setAmount((prev) => prev + 1)}
+              >
+                ▲
+              </button>
+              <button
+                className="px-2 text-gray-600 hover:text-gray-800"
+                onClick={() => setAmount((prev) => (prev < 1 ? 0 : prev - 1))}
+              >
+                ▼
+              </button>
+            </div>
+          </div>
         </div>
         <div className="flex justify-center gap-5 mt-10 text-white">
-          <button className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500" disabled={amount <= 0} onClick={deposit}>Deposit</button>
-          <button className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500" disabled={amount <= 0} onClick={withdraw}>Withdraw</button>
+          <button
+            className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500"
+            disabled={amount <= 0}
+            onClick={deposit}
+          >
+            Deposit
+          </button>
+          <button
+            className="border bg-blue-700/60 p-1 px-4 rounded-xl hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-500"
+            disabled={amount <= 0}
+            onClick={withdraw}
+          >
+            Withdraw
+          </button>
         </div>
       </div>
     );
@@ -125,19 +170,17 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="flex justify-center bg-red-100">
+    <main className="flex items-center justify-center bg-gray-100 min-h-screen">
       <script src="https://cdn.tailwindcss.com"></script>
 
-      <div className="h-screen flex items-center justify-center">
-        <div className="bg-red-500 rounded shadow-xl p-4 py-10">
-          <header className="flex justify-center mt-5">
-            <h1 className="font-bold text-white text-4xl">
-              Welcome to the Metacrafters ATM!
-            </h1>
-          </header>
+      <div className="bg-gray-500 rounded shadow-xxl p-4 py-10">
+        <header className="flex justify-center mt-5">
+          <h1 className="font-bold text-white text-4xl">
+            Welcome to the Metacrafters ATM!
+          </h1>
+        </header>
 
-          {initUser()}
-        </div>
+        {initUser()}
       </div>
     </main>
   );
